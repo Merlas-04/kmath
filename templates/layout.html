@@ -11,8 +11,21 @@
     
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
-</head>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['\\(', '\\)']],
+          displayMath: [['\\[', '\\]']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+
+    <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    </head>
 <body>
 
     <main class="main-container">
@@ -29,35 +42,21 @@
         {% block content %}{% endblock %}
     </main>
 
-    {% if request.endpoint == 'inicio' %}
-        <script src="{{ url_for('static', filename='js/funcion.js') }}"></script>
-    {% endif %}
-
+    <script src="{{ url_for('static', filename='js/funcion.js') }}"></script>
     <script>
-        // Este código se ejecuta una vez que todo el contenido de la página se ha cargado.
+        // Este script para las alertas autodesplegables sigue aquí
         document.addEventListener('DOMContentLoaded', function() {
-            
-            // 1. Busca todos los elementos que tengan la clase 'alert'.
             const alerts = document.querySelectorAll('.alert');
-
-            // 2. Si se encuentran alertas, se ejecuta el siguiente código para cada una.
             alerts.forEach(function(alert) {
-
-                // 3. Espera 5 segundos (5000 milisegundos) antes de hacer algo.
                 setTimeout(function() {
-                    
-                    // 4. Después de 5 segundos, añade la clase 'fade-out' para iniciar la animación de desvanecimiento.
                     alert.classList.add('fade-out');
-
-                    // 5. Espera otros 0.5 segundos (500ms), el tiempo que dura la animación.
                     setTimeout(function() {
-                        // 6. Una vez que la alerta es invisible, la elimina completamente de la página.
                         alert.style.display = 'none';
-                    }, 500); 
-
+                    }, 500);
                 }, 5000); 
             });
         });
     </script>
-    </body>
+
+</body>
 </html>
