@@ -103,27 +103,35 @@ function inicializarCalculadora() {
       return response.json();
     })
     .then(data => {
-      console.log("Respuesta de /derivar:", data);
-      if (data.resultado !== undefined && data.derivada_str !== undefined) {
+    // Si quieres, ya puedes eliminar o comentar la siguiente línea, ya que hemos resuelto el misterio.
+    console.log("Respuesta de /derivar:", data); 
+
+    if (data.resultado !== undefined && data.derivada_str !== undefined) {
         fetchAndRenderHistory();
         resultadoDiv.innerHTML = `<h2>Resultado:</h2><p>\\[${data.resultado}\\]</p>`;
         pasosDiv.innerHTML = `<h2>Explicación paso a paso:</h2><div>${data.pasos}</div>`;
-        
-       MathJax.typeset([resultadoDiv, pasosDiv]);
-       
-       solicitarGrafica(data.derivada_str);
-        console.log('Renderizado de MathJax solicitado y gráfica pedida.');
-        
-        } else {
+
+        // --- INICIO DEL CÓDIGO CORREGIDO Y DEFINITIVO ---
+
+        // Le pedimos a MathJax que espere a estar 100% listo y solo después
+        // ejecute las funciones de renderizado y de la gráfica.
+        // Esta es la forma oficial y más segura de manejar contenido dinámico.
+        MathJax.startup.promise.then(() => {
+            console.log('Confirmado: MathJax está listo. Renderizando ahora.');
+
+            // Ahora que estamos seguros de que existe, llamamos a la función de renderizado.
+            MathJax.typeset([resultadoDiv, pasosDiv]);
+
+            // Y después de renderizar, pedimos la gráfica.
+            solicitarGrafica(data.derivada_str);
+        });
+
+        // --- FIN DEL CÓDIGO CORREGIDO ---
+
+    } else {
         throw new Error(data.error || "Respuesta inesperada del servidor.");
-      }
-    })
-    .catch(error => {
-      console.error('Error en fetch /derivar o procesamiento:', error);
-      resultadoDiv.innerHTML = `<p style="color: #E74C3C;"><strong>Error:</strong> ${error.message}</p>`;
-      pasosDiv.innerHTML = '';
-    });
-  });
+    }
+})
 
   // ==========================================================
   // LÓGICA DEL HISTORIAL
