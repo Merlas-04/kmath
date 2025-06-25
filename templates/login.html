@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}Inicio de Sesión{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="logo-container">
+        <div class="logo-symbol">f</div>
+        <div class="logo-brand">
+            <h2>KMath</h2>
+            <p>Calculadora de Derivadas</p>
+        </div>
+    </div>
+
+    <div class="auth-form-wrapper">
+        <h1>Inicio de sesión</h1>
+        <p class="subtitle">Inicia sesión con tu cuenta de KMath</p>
+
+        <form method="POST" action="{{ url_for('login') }}" novalidate>
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.username.label(class="form-label") }}
+                {{ form.username(class="form-control", placeholder="Introduce tu email") }}
+                {% for error in form.username.errors %}
+                    <span class="error-text">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-control", placeholder="Introduce tu contraseña") }}
+                {% for error in form.password.errors %}
+                    <span class="error-text">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+
+        <div class="auth-link">
+            <p>¿No tienes una cuenta? <a href="{{ url_for('register') }}">Regístrate</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

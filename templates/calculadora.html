@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}Calculadora{% endblock %}
+
+{% block content %}
+<div id="overlay"></div>
+
+<aside class="historial">
+    <h2>Historial</h2>
+    <ul id="historial-lista">
+        <li>(No hay cálculos)</li>
+    </ul>
+    <button id="btn-limpiar-historial" class="btn btn-secondary">Limpiar Historial</button>
+</aside>
+
+<div class="calculator-container">
+    <header class="calc-header">
+        <button id="menu-toggle" class="menu-button">&#9776;</button>
+        <div class="welcome-message">
+            Bienvenido {{ current_user.username }}!
+        </div>
+        <a href="{{ url_for('logout') }}" class="logout-link">Cerrar Sesión</a>
+    </header>
+
+    <section class="card">
+        <form id="formulario">
+            <div class="form-group">
+                <label for="expresion">Introduce una función en términos de X</label>
+                <input type="text" id="expresion" class="form-control" placeholder="Ej: x^2 * ln(x)">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Calcular Derivada</button>
+            </div>
+        </form>
+    </section>
+
+    <div id="resultado-wrapper" style="display: none;">
+        <section class="card result-card">
+            <h2>Resultado:</h2>
+            <div id="resultado"></div>
+            
+            <hr>
+
+            <h2>Explicación paso a paso:</h2>
+            <div id="pasos"></div>
+        </section>
+        
+        <section class="card graph-controls">
+             <button id="btn-ver-grafica" class="btn btn-secondary">Ver Gráfica</button>
+             <div class="imagen-grafica" style="display: none;">
+                <img id="grafica-img" src="" alt="Gráfica de la derivada">
+             </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,371 @@
+/* --- VARIABLES Y CONFIGURACIÓN GENERAL --- */
+:root {
+    --bg-dark: #1C1C1E;
+    --bg-medium: #2C2C2E;
+    --bg-light: #3A3A3C;
+    --text-primary: #FFFFFF;
+    --text-secondary: #EBEBF599;
+    --accent-purple: #BF5AF2;
+    --accent-green: #34C759;
+    --accent-blue: #0A84FF;
+    --error-red: #FF453A;
+    --font-family: 'Poppins', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+a {
+    color: var(--accent-purple);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- ESTILOS DE AUTENTICACIÓN (LOGIN Y REGISTER) --- */
+.auth-container {
+    background-color: var(--bg-medium);
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    border: 1px solid var(--bg-light);
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.logo-symbol {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 120px;
+    font-style: italic;
+    color: var(--accent-green);
+    line-height: 1;
+}
+
+.logo-brand {
+    text-align: left;
+}
+
+.uptex-logo {
+    height: 35px;
+    margin-bottom: 5px;
+}
+
+.logo-brand h2 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.logo-brand p {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.back-arrow {
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--text-secondary);
+}
+
+.auth-form-wrapper h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--bg-light);
+    border: 1px solid #4A4A4C;
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 16px;
+    font-family: var(--font-family);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 0 3px rgba(191, 90, 242, 0.3);
+}
+
+.btn {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: var(--font-family);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn-primary {
+    background-color: var(--accent-purple);
+    color: var(--text-primary);
+}
+
+.btn-primary:hover {
+    background-color: #a945d8;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.auth-link {
+    margin-top: 25px;
+    font-size: 14px;
+}
+
+.error-text {
+    color: var(--error-red);
+    font-size: 12px;
+    padding-top: 4px;
+}
+
+.flashes {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+}
+.alert {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: white;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* --- ESTA ES LA ÚNICA CLASE NUEVA QUE NECESITAS AÑADIR --- */
+.alert.fade-out {
+    opacity: 0;
+}
+
+.alert-success { background-color: var(--accent-green); }
+.alert-danger { background-color: var(--error-red); }
+.alert-info { background-color: var(--accent-blue); }
+
+/* --- ESTILOS DE LA CALCULADORA --- */
+.calculator-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 20px 0;
+}
+
+.card {
+    background-color: var(--bg-medium);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+    border: 1px solid var(--bg-light);
+}
+
+.calc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    position: relative;
+    z-index: 10;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 28px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1600;
+}
+
+.welcome-message {
+    font-weight: 600;
+}
+
+.logout-link {
+    font-size: 14px;
+}
+
+.result-card {
+    background-color: #f9f9f9; /* Fondo claro para el resultado */
+    color: #1C1C1E; /* Texto oscuro */
+}
+
+.result-card h2 {
+    margin-bottom: 15px;
+}
+
+#resultado, #pasos {
+    font-size: 1.1em;
+    overflow-x: auto; /* Scroll si la fórmula es muy larga */
+}
+
+#pasos p { margin-bottom: 10px; }
+#pasos div { 
+    margin-left: 20px;
+    padding-left: 15px;
+    border-left: 2px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.btn-secondary {
+    background-color: var(--bg-light);
+    color: var(--text-primary);
+    border: 1px solid #4A4A4C;
+}
+
+.btn-secondary:hover {
+    background-color: #4A4A4C;
+}
+
+.imagen-grafica {
+    margin-top: 20px;
+    text-align: center;
+}
+#grafica-img {
+    max-width: 100%;
+    border-radius: 10px;
+    background-color: white;
+}
+
+/* --- MENÚ LATERAL DE HISTORIAL --- */
+.historial {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Oculto por defecto */
+    width: 300px;
+    max-width: 80%;
+    height: 100%;
+    background-color: var(--bg-medium);
+    padding: 25px;
+    z-index: 1500;
+    transition: left 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--bg-light);
+}
+.historial.is-visible {
+    left: 0;
+}
+.historial h2 {
+    margin-bottom: 20px;
+}
+#historial-lista {
+    list-style: none;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+#historial-lista li {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 14px;
+    border: 1px solid var(--bg-light);
+}
+#historial-lista li:hover {
+    background-color: var(--bg-light);
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1400;
+    display: none;
+}
+#overlay.is-visible {
+    display: block;
+}
+
+
+/* --- RESPONSIVIDAD --- */
+@media (max-width: 768px) {
+    .auth-container {
+        padding: 20px;
+    }
+    .logo-symbol { font-size: 90px; }
+    .logo-brand h2 { font-size: 36px; }
+
+    .main-container {
+        padding: 10px;
+    }
+    .calculator-container {
+        padding: 0;
+    }
+    .card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-container {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .logo-symbol { display: none; }
+    .logo-brand { text-align: center; }
+    .back-arrow {
+        top: 25px;
+        left: 20px;
+        transform: none;
+    }
+}

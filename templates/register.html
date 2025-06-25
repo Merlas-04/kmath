@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="logo-container">
+        <a href="{{ url_for('login') }}" class="back-arrow">&lt;</a>
+        <div class="logo-symbol">f</div>
+        <div class="logo-brand">
+            <h2>KMath</h2>
+            <p>Calculadora de Derivadas</p>
+        </div>
+    </div>
+
+    <div class="auth-form-wrapper">
+        <h1>Regístrate</h1>
+        <p class="subtitle">Crea tu cuenta de KMath</p>
+
+        <form method="POST" action="{{ url_for('register') }}" novalidate>
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.username.label(class="form-label") }}
+                {{ form.username(class="form-control", placeholder="Introduce un email válido") }}
+                 {% for error in form.username.errors %}
+                    <span class="error-text">{{ error }}</span>
+                {% endfor %}
+            </div>
+
+            <div class="form-group">
+                {{ form.password.label(class="form-label") }}
+                {{ form.password(class="form-control", placeholder="Crea una contraseña") }}
+                 {% for error in form.password.errors %}
+                    <span class="error-text">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.confirm_password.label(class="form-label") }}
+                {{ form.confirm_password(class="form-control", placeholder="Confirma tu contraseña") }}
+                 {% for error in form.confirm_password.errors %}
+                    <span class="error-text">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+
+        <div class="auth-link">
+            <p>¿Ya tienes cuenta? <a href="{{ url_for('login') }}">Inicia sesión</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
