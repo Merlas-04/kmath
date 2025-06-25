@@ -109,12 +109,12 @@ function inicializarCalculadora() {
         resultadoDiv.innerHTML = `<h2>Resultado:</h2><p>\\[${data.resultado}\\]</p>`;
         pasosDiv.innerHTML = `<h2>Explicación paso a paso:</h2><div>${data.pasos}</div>`;
         
-        MathJax.typesetPromise([resultadoDiv, pasosDiv]).then(() => {
-          console.log('Typeset de resultado/pasos exitoso.');
-          solicitarGrafica(data.derivada_str);
-        }).catch(err => console.error("Error en typeset de MathJax:", err));
+       MathJax.typeset([resultadoDiv, pasosDiv]);
+       
+       solicitarGrafica(data.derivada_str);
+        console.log('Renderizado de MathJax solicitado y gráfica pedida.');
         
-      } else {
+        } else {
         throw new Error(data.error || "Respuesta inesperada del servidor.");
       }
     })
