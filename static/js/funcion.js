@@ -103,31 +103,25 @@ function inicializarCalculadora() {
       return response.json();
     })
     .then(data => {
-    // Si quieres, ya puedes eliminar o comentar la siguiente línea, ya que hemos resuelto el misterio.
-    console.log("Respuesta de /derivar:", data); 
 
     if (data.resultado !== undefined && data.derivada_str !== undefined) {
         fetchAndRenderHistory();
         resultadoDiv.innerHTML = `<h2>Resultado:</h2><p>\\[${data.resultado}\\]</p>`;
         pasosDiv.innerHTML = `<h2>Explicación paso a paso:</h2><div>${data.pasos}</div>`;
+        
+        // --- INICIO DEL CÓDIGO SIMPLIFICADO Y DIRECTO ---
 
-        // --- INICIO DEL CÓDIGO CORREGIDO Y DEFINITIVO ---
+        console.log('Renderizando fórmulas con MathJax...');
+        // Como ahora estamos seguros de que MathJax está cargado, podemos llamar a la función directamente.
+        // Usamos la función original que es la más común.
+        MathJax.typesetPromise([resultadoDiv, pasosDiv]);
+        
+        console.log('Solicitando gráfica...');
+        // Llamamos a la función de la gráfica.
+        solicitarGrafica(data.derivada_str);
 
-        // Le pedimos a MathJax que espere a estar 100% listo y solo después
-        // ejecute las funciones de renderizado y de la gráfica.
-        // Esta es la forma oficial y más segura de manejar contenido dinámico.
-        MathJax.startup.promise.then(() => {
-            console.log('Confirmado: MathJax está listo. Renderizando ahora.');
-
-            // Ahora que estamos seguros de que existe, llamamos a la función de renderizado.
-            MathJax.typeset([resultadoDiv, pasosDiv]);
-
-            // Y después de renderizar, pedimos la gráfica.
-            solicitarGrafica(data.derivada_str);
-        });
-
-        // --- FIN DEL CÓDIGO CORREGIDO ---
-
+        // --- FIN DEL CÓDIGO SIMPLIFICADO Y DIRECTO ---
+        
     } else {
         throw new Error(data.error || "Respuesta inesperada del servidor.");
     }
